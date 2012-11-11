@@ -1,6 +1,12 @@
 CPP = g++
 CPPFLAGS = -Wall -Wextra -Werror
 
+atest: avl_test.cpp AVL.o BST.o Node.o
+	$(CPP) $(CPPFLAGS) -o atest $^
+
+AVL.o: AVL.h AVL.cpp
+	$(CPP) $(CPPFLAGS) -c AVL.cpp
+
 ttest: tree_test.cpp BST.o Node.o
 	$(CPP) $(CPPFLAGS) -o ttest $^
 
@@ -15,5 +21,5 @@ Node.o: Node.h Node.cpp
 
 clean: 
 	rm -f *.o;
-	rm -f ntest; rm -f ttest;
+	rm -f ntest; rm -f ttest; rm -f atest;
 	rm -f *~;
