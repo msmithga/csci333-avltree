@@ -14,9 +14,9 @@ class BST {
   BST<T>();
   ~BST<T>();
 
-  bool find(T v);
+  bool find(T v, int b);
   void remove(T v);
-  void insert(T v);
+  void insert(T v, int b);
   void print();
   void printTree();
 };

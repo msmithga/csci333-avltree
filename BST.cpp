@@ -16,8 +16,8 @@ BST<T>::~BST() {
 }
 
 template <typename T>
-bool BST<T>::find(T v) {
-  Node<T>* temp = new Node<T>(v);
+bool BST<T>::find(T v, int b) {
+  Node<T>* temp = new Node<T>(v, b);
   Node<T>** curr = &root;
 
   while(*curr != 0 && (*curr)->getValue() != v) {
@@ -33,8 +33,8 @@ bool BST<T>::find(T v) {
 }
 
 template <typename T>
-void BST<T>::insert(T v) {
-  Node<T>* temp = new Node<T>(v);
+void BST<T>::insert(T v, int b) {
+  Node<T>* temp = new Node<T>(v, b);
   Node<T>** curr = &root;
 
   while(*curr != 0 && (*curr)->getValue() != v) {

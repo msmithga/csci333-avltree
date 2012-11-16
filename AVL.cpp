@@ -4,7 +4,6 @@
 template <typename T>
 AVL<T>::AVL() {
   root = 0;
-  balance = 0;
 }
 
 template <typename T>
@@ -23,14 +22,40 @@ void AVL<T>::postOrderTraversal() {
 }
 
 template <typename T>
-void AVL<T>::rotateRight(Node<T>* cn) {
-  Node<T>* criticalNode = cn;
+void AVL<T>::rotateRight(Node<T>** cn) {
+  Node<T>* curr = *cn;
+
+  *cn = (*cn)->getLeftChild();
+  curr->setLeftChild(*((*cn)->getRightChild()));
+  (*cn)->setRightChild(*curr);
 
 }
 
 template <typename T>
-void AVL<T>::rotateLeft(Node<T>* cn) {
-  Node<T>* criticalNode = cn;
+void AVL<T>::rotateLeft(Node<T>** cn) {
+  Node<T>* curr = *cn;
+
+  *cn = (*cn)->getRightChild();
+  curr->setRightChild(*((*cn)->getLeftChild()));
+  (*cn)->setLeftChild(*curr);
+
+}
+
+template <typename T>
+void AVL<T>::rotate(T v) {
+  Node<T>** curr = &root;
+  while(*curr != 0) {
+      if(v < (*curr)->getValue()) {
+	curr = &((*curr)->getLeftChild());
+      }else if(v > (*curr)->getValue()) {
+	curr = &((*curr)->getRightChild());
+      }
+    }
+    if((*curr)->getBalance() == -1) {
+      rotateLeft(curr);
+    }else {
+      rotateRight(curr);
+    }
 }
 
 template <typename T>
